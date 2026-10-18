@@ -1,6 +1,5 @@
 package ru.frequencyanalysis;
 
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
@@ -35,12 +34,7 @@ public class App
         Map<T, Integer> result = new HashMap<>();
 
         for (T value : array){
-            if(result.containsKey(value)){
-                result.put(value, result.get(value) + 1);
-                continue;
-            }
-
-            result.put(value, 1);
+            result.merge(value, 1, (v, x) -> v + 1);
         }
 
         return result;
